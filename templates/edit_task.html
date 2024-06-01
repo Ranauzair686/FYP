@@ -1,0 +1,13 @@
+<!-- edit_task.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Edit Task</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save changes</button>
+  </form>
+  <a href="{% url 'view_issued_tasks' %}">Back to Issued Task</a>
+{% endblock %}

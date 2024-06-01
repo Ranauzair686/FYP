@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.form-container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 500px;
+    margin: 40px auto;
+    animation: scaleIn 0.3s forwards;
+}
+
+.form-inner-wrap {
+    padding: 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+h2 {
+    color: white;
+    font-weight: 600;
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+form {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+form p {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form select,
+form textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 2px solid #e7e7e7;
+    border-radius: 5px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 8px rgba(102, 126, 234, 0.6);
+    outline: none;
+}
+
+button[type="submit"] {
+    background-color: #667eea;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(102, 126, 234, 0.4);
+    font-weight: 600;
+    width: 100%;
+}
+
+button[type="submit"]:hover {
+    background-color: #5a67d8;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.5);
+}
+
+a {
+    display: block;
+    margin-top: 20px;
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.3s;
+    text-align: center;
+}
+
+a:hover {
+    color: #5a67d8;
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+</style>
+<div class="form-container">
+    <div class="form-inner-wrap">
+        <h2>Edit Employee</h2>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save changes</button>
+    </form>
+    <a href="{% url 'employees_list' %}">Back to Employee List</a>
+</div>
+{% endblock %}

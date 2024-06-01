@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ambiguity Detection Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #2C3E50;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+    }
+    main {
+      margin: 30px auto;
+      max-width: 700px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .report-header {
+      text-align: center;
+    }
+    .report-header h1 {
+      color: #3498DB;
+    }
+    .word-card {
+      background-color: #eaf2f8;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .word-card h3 {
+      margin-top: 0;
+      color: #3498DB;
+    }
+    .back-button {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .button {
+      padding: 10px 20px;
+      color: white;
+      background-color: #3498DB;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 18px;
+      display: inline-block;
+    }
+    .button:hover {
+      background-color: #2980B9;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #f0f4f8;
+      color: #666;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ambiguity Detection System</h1>
+  </header>
+  <main>
+    <div class="report-header">
+      <h1>Ambiguity Detection Report</h1>
+    </div>
+    {% if detected_homonyms %}
+      <p>Detected Homonyms:</p>
+      {% for word, meanings in detected_homonyms %}
+        <div class="word-card">
+          <h3>Word: {{ word }}</h3>
+          <p>Possible Meanings: {{ meanings|join:", " }}</p>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No homonym ambiguity detected.</p>
+    {% endif %}
+    <div class="back-button">
+        <a href="{% url 'employee_ambiguity_detection' %}" class="button">Back to Ambiguity Detection</a>
+      </div>
+  </main>
+  <footer>
+    <p>&copy; 2024 Ambiguity Detection System</p>
+  </footer>
+</body>
+</html>

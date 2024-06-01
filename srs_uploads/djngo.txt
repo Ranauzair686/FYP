@@ -1,0 +1,5 @@
+mery project main teen roles han jin main project manager employee aur client 
+jis main project manager employee ke registration ko approve kr skta hai 
+project add kr skta hai project assign kr skta hai project kiss employee ko assign krn hai aur project ko view kr skta hai 
+employee wo project dekh skta hai projecct ko dekh kr us pr work kr skta hai 
+client project manager ko task dy ga aur project ko view kr kst hai uska status aur yeh sab apni profile ko edit kr saky gain

@@ -1,0 +1,157 @@
+<!-- view_reports.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ambiguity Detection Results</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Table Header Styling */
+        th {
+            background-color: #343a40;
+            color: #ffffff;
+            text-align: left;
+            padding: 12px;
+        }
+
+        /* Table Row Styling */
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        /* Add zebra striping */
+        tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        /* Add hover effect on rows */
+        tbody tr:hover {
+            background-color: #e9ecef;
+        }
+
+        /* Table Borders */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table Container */
+       /* Table Container */
+.table-container {
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    margin-top: 60px; /* Increased margin-top to move down the box */
+}
+
+        /* Title Styling */
+        .header {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: #343a40;
+        }
+
+        /* Page Background */
+        body {
+            background: linear-gradient(135deg, #ececec 40%, #ffffff 100%);
+            font-family: 'Arial', sans-serif;
+        }
+/* Back Button Styling */
+.btn-back {
+    margin-top: 10px;
+    background-color: #343a40; /* Dark background */
+    color: #ffffff; /* White text */
+    padding: 10px 20px; /* Padding inside button */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded corners */
+    border: 2px solid #343a40; /* Border matches background color */
+    font-weight: bold; /* Bold text */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Light shadow */
+    transition: all 0.2s; /* Smooth transition on hover */
+}
+
+.btn-back:hover {
+    background-color: #ffffff; /* White background on hover */
+    color: #343a40; /* Dark text */
+    border: 2px solid #343a40; /* Keep the border visible */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+    text-decoration: none; /* Ensure no underline on hover */
+}
+/* Download Button Styling */
+.btn-download {
+    background-color: #28a745; /* Green color */
+    color: #ffffff; /* White text */
+    padding: 12px 20px; /* More padding */
+    font-size: 16px; /* Larger font size */
+    border-radius: 5px; /* Rounded corners */
+    border: 2px solid #28a745; /* Border matches background color */
+    font-weight: bold; /* Bold text */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Light shadow */
+    transition: all 0.2s; /* Smooth transition on hover */
+}
+
+.btn-download:hover {
+    background-color: #ffffff; /* White background on hover */
+    color: #28a745; /* Green text */
+    border: 2px solid #28a745; /* Keep the border visible */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+    text-decoration: none; /* Remove underline */
+}
+
+
+    </style>
+</head>
+<body>
+
+    <div class="container table-container">
+        <div class="header">
+            <h1>Ambiguity Detection Results</h1>
+        </div>
+
+        {% if results %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Detection Time</th>
+                        <th>Text Analyzed</th>
+                        <th>Detected Homonyms</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                        <tr>
+                            <td>{{ result.created_at|date:"F j, Y, g:i a" }}</td>
+                            <td>{{ result.text }}</td>
+                            <td>{{ result.detected_homonyms }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No results available.</p>
+        {% endif %}
+    </div>
+    <!-- Add this download button to your view_reports.html file -->
+<!-- Add this to your view_reports.html file -->
+<div class="d-flex justify-content-center my-3">
+    <a href="{% url 'download_reports_csv' %}" class="btn btn-download">Download Reports</a>
+</div>
+
+
+   <!-- Add this to your view_reports.html file -->
+<!-- Add this to your view_reports.html file -->
+<div class="d-flex justify-content-center mb-3">
+    <a href="{% url 'employee' %}" class="btn btn-back">Back to Employee</a>
+</div>
+
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<style>@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(135deg, #6dd5fa 0%, #ff758c 100%);
+    }
+    
+    .container {
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    
+    .container:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+    
+    form {
+        margin: 0;
+    }
+    
+    form * {
+        font-family: 'Roboto', sans-serif;
+    }
+    
+    form input[type="text"],
+    form select,
+    form textarea {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+        transition: border-color 0.3s;
+    }
+    
+    form input[type="text"]:focus,
+    form select:focus,
+    form textarea:focus {
+        outline: none;
+        border-color: #ff758c;
+    }
+    
+    form button {
+        width: 100%;
+        padding: 10px 0;
+        border: none;
+        border-radius: 5px;
+        background: #ff758c;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+    }
+    
+    form button:hover {
+        background: #e85a70;
+    }
+    
+    .back-link-container {
+        margin-top: 15px;
+    }
+    
+    .back-link-container a {
+        color: #ff758c;
+        text-decoration: none;
+        padding: 8px 16px;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+    
+    .back-link-container a:hover {
+        color: #e85a70;
+    }
+    
+    @media (max-width: 768px) {
+        .container {
+            width: 95%;
+            margin-top: 20px;
+        }
+    }
+</style>
+<div class="container">
+<h2>Assign Task To Employee</h2>
+<!-- Make sure your form has the attribute enctype="multipart/form-data" for file upload -->
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Assign Task">
+</form>
+
+<div class="back-link-container">
+    <a href="{% url 'projectmanager' %}">Back to Project Manager</a>
+  </div>
+</div>

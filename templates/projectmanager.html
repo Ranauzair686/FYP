@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+<style>/* Global styles */
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f8f8;
+  }
+  
+  /* Jumbotron styles */
+  .jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #e9ecef;
+    border-radius: 0.3rem;
+  }
+  
+  .jumbotron p.lead {
+    font-size: 1.35em;
+    font-weight: 300;
+  }
+  
+  .jumbotron hr.my-4 {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Options styles */
+  .options {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .btn {
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-primary:hover {
+    color: #fff;
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  .btn-lg {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+  }
+  
+  .btn-lg.active, .btn-lg:active {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+  
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    .options {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+  /* Include this after your existing styles to override */
+  .btn-primary {
+    background-image: linear-gradient(to right, #0062E6, #33AEFF);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border-radius: 50px; /* Rounded edges for buttons */
+    font-size: 18px;
+  }
+  
+  .btn-primary:hover, .btn-primary.active, .btn-primary:active {
+    background-image: linear-gradient(to right, #c0ec8d, #3395ff);
+  }
+  </style>
+  </head>
+  <body>
+    {% include "navbarprojectmanager.html" %}
+  
+   
+    <div class="jumbotron" >
+    <h1 class="display-4">Hello Manager !</h1>
+    <p class="lead">As you are project manager, you can add a project atsk, view list to tasks,
+       Issue tasks to employee,
+      View issued task to employees and many more ... !
+
+    </p>
+    <hr class="my-4">
+    <p>Option Available For You</p>
+    <div class="options" style="text-align:center">
+      <a class="btn btn-primary" href="{% url 'client_srs_list' %}">Client SRS List</a>
+      <a class="btn btn-primary" href="{% url 'add_project_task' %}">Add Project Task</a>
+      <a class="btn btn-primary" href="{% url 'view_issued_tasks' %}">View Issued Tasks</a>
+      <a class="btn btn-primary" href="{% url 'employees' %}">View Employees</a>
+      <a class="btn btn-primary" href="{% url 'assign_task' %}">assign employee</a>
+      
+
+    </div> 
+
+
+    {% include "footer.html" %}
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!-- {% extends 'base.html' %}
+
+{% block content %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <h2>Pending Employee Approvals</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <ul>
+            {% for employee in pending_employees %}
+                <li>{{ employee.username }} - <button type="submit" name="user_id" value="{{ employee.id }}">Approve</button></li>
+            {% empty %}
+                <li>No pending approvals.</li>
+            {% endfor %}
+        </ul>
+    </form>
+  -->

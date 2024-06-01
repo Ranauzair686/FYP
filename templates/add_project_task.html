@@ -1,0 +1,134 @@
+<style>/* Container and Form Styling */
+/* Add this to your CSS file or within a <style> tag in your HTML file */
+
+/* 
+Apply the linear gradient to the body for the soft background */
+body {
+  background: linear-gradient(to right, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Style the container of your form */
+.container {
+  max-width: 340px;
+  margin: auto;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative; /* For positioning the pseudo-elements */
+  overflow: hidden; /* Ensures the pseudo-elements are clipped */
+}
+
+/* Add the diagonal color accent using pseudo-elements */
+.container::before {
+  content: '';
+  position: absolute;
+  width: 350%; /* Large width to ensure it covers the diagonal completely */
+  height: 200%; /* Large height to ensure it covers the diagonal completely */
+  background: linear-gradient(to right, #ff9a9e 0%, #fda085 100%);
+  top: -100%; /* Position it off-screen initially */
+  left: -75%; /* Position it off-screen initially */
+  transform: rotate(140deg); /* Tilt the pseudo-element */
+  z-index: 0; /* Ensure it stays behind the content */
+}
+
+/* Style your form elements here */
+input[type="text"],
+input[type="password"],
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px; /* Spacing between each form element */
+  border: none;
+  border-radius: 20px; /* Rounded borders for the inputs */
+  background-color: #eee; /* Soft background color for inputs */
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  background-color: #f07755; /* Soft yellow for the button */
+  color: #fff;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #f6d365 ; /* Slightly darker shade when hovering */
+}
+
+/* You may need to adjust the selector to target your specific form structure */
+.form-group {
+  position: relative; /* For positioning the icons or labels if you have any */
+  z-index: 1; /* Ensure they appear above the pseudo-element */
+}
+
+/* Style the legend or heading of your form */
+legend, h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 24px;
+}
+
+/* Additional styles for links like 'Forgot Password' or 'Sign Up' */
+a {
+  text-decoration: none;
+  color: #007bff; /* Choose a color that matches your design */
+  font-size: 14px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Ensure the content of the container is above the pseudo-elements */
+.container * {
+  position: relative;
+  z-index: 1;
+}
+.back-link-container {
+    text-align: center; /* Center align the container */
+    margin: 30px 0; /* Add some vertical space above and below the link */
+}
+
+.back-link-container a {
+    display: inline-block; /* Allows padding and width adjustments */
+    text-decoration: none; /* No underline */
+    color: #ffffff; /* White text */
+    background-color: #c42f34 ; /* Bootstrap primary color */
+    padding: 10px 20px; /* Top/bottom and left/right padding */
+    border-radius: 50px; /* Fully rounded corners for a pill shape */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* A subtle shadow */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    font-weight: bold; /* Make the text bold */
+    letter-spacing: 0.05em; /* Add some spacing between letters */
+}
+
+.back-link-container a:hover, .back-link-container a:focus {
+    text-decoration: none; /* No underline on hover/focus */
+    background-color: #b3005a; /* A slightly darker shade on hover/focus */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* A deeper shadow for hover/focus */
+    transform: translateY(-2px); /* Slight upward lift when hovered/focused */
+}
+
+
+  </style>
+<div class="container">
+  <h2 style="text-align: center; margin-top: 20px; margin-bottom: 20px; padding: 10px 0; background-color: #f2f2f2; color: #333; border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); font-size: 24px; font-family: 'Arial', sans-serif;">Add Task Here</h2>
+  <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary">Submit Task</button>
+        </div>
+        
+    </form>
+</div>
+<div class="back-link-container">
+  <a href="{% url 'projectmanager' %}" class="back-to-manager">Back to projectmanager</a>
+</div>

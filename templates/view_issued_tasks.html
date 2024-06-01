@@ -1,0 +1,135 @@
+{% extends 'base.html' %} <!-- Assuming you have a base template -->
+
+
+
+{% block content %}
+<style>
+    body {
+    background-color: #a2e7ba;
+}
+    .table-responsive {
+      overflow-x: auto;
+    }
+  
+    .styled-table {
+    border-collapse: collapse;
+    margin: 50px auto 25px; /* Adjusted margin (top, right/left, bottom) */
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+    
+  
+    .styled-table thead tr {
+      background-color: #009879;
+      color: #ffffff;
+      text-align: center; /* center-aligning the header */
+    }
+  
+    .styled-table th,
+    .styled-table td {
+      padding: 12px 15px;
+      text-align: center; /* center-aligning table data */
+    }
+  
+    .styled-table tbody tr {
+      border-bottom: 1px solid #dddddd;
+    }
+  
+    .styled-table tbody tr:nth-of-type(even) {
+      background-color: #f3f3f3;
+    }
+  
+    .styled-table tbody tr:last-of-type {
+      border-bottom: 2px solid #009879;
+    }
+  
+    .styled-table tbody tr.active-row {
+      font-weight: bold;
+      color: #009879;
+    }
+  
+    .btn {
+      text-decoration: none;
+      padding: 8px;
+      border-radius: 5px;
+      transition: all 0.3s ease 0s;
+    }
+  
+    .btn-primary {
+      background-color: #009879;
+      color: white;
+    }
+  
+    .btn-primary:hover {
+      background-color: #007861;
+    }
+  
+    .btn-secondary {
+      background-color: #f2f2f3;
+      color: black;
+    }
+  
+    .btn-secondary:hover {
+      background-color: #e1e1e2;
+    }
+    .back-link-container {
+    display: flex;
+    justify-content: center; /* Aligns items horizontally at the center */
+    align-items: center; /* Aligns items vertically at the center */
+    margin-top: 20px; /* Adjust top margin as needed */
+}
+
+.back-to-manager {
+    padding: 8px 16px;
+    background-color: #009879;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    
+}
+
+.back-to-manager:hover {
+    background-color: #67b61e;
+}
+
+  </style>
+  
+
+<h2 style="text-align: center;">Issued Tasks</h2>
+
+<div class="table-responsive">
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Project Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in tasks %}
+      <tr>
+        <td style="text-align: center;">{{ task.project_name }}</td>
+        <td style="text-align: center;">{{ task.project_description }}</td>
+        <td>
+          <a href="{% url 'edit_task' task.id %}" class="btn btn-primary btn-sm">Edit</a>
+          <a href="{% url 'view_task' task.id %}" class="btn btn-secondary btn-sm">View</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="3" style="text-align: center;">No tasks have been issued.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div class="back-link-container">
+    <a href="{% url 'projectmanager' %}" class="back-to-manager">Back to ProjectManager</a>
+</div>
+
+{% endblock %}

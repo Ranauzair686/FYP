@@ -1,0 +1,190 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Multiple user login</title>
+  <style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #86bdb8, #e4c4c9); /* Gradient from light blue to pink */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: linear-gradient(to right, #86bdb8, #e4c4c9); /* Gradient from light blue to pink */
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease-in-out;
+    
+}
+
+
+.container:hover {
+    transform: translateY(-5px);
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input[type=text], input[type=email], input[type=password], input[type=submit], input[type=radio], label {
+    transition: all 0.30s ease-in-out;
+}
+
+input[type=text]:focus, input[type=email]:focus, input[type=password]:focus {
+    box-shadow: 0 0 8px 0 rgba(109, 213, 250, 0.5); /* Soft glow effect to match the blue gradient */
+    border: 1px solid #6dd5fa; /* Border color to match the lighter part of the gradient */
+}
+
+input[type=text], input[type=email], input[type=password] {
+    width: calc(100% - 22px); /* Full width minus padding and border */
+    padding: 12px; /* Sufficient padding for visual appeal */
+    margin-bottom: 10px; /* Reduced space between inputs */
+    border: 1px solid #a0b9d9; /* Light border color to match the gradient */
+    border-radius: 20px; /* Rounded corners for a smooth look */
+    box-sizing: border-box; /* Include padding and border in the width */
+    outline: none; /* Removes the default focus outline */
+    transition: all 0.3s ease-in-out; /* Smooth transition for interactions */
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white for a gentle effect */
+}
+
+.btn-pill {
+    display: block; /* Change display to block for margin auto to work */
+    width: auto; /* Let the button size according to its content */
+    margin: 20px auto; /* Center the button with automatic horizontal margins */
+    padding: 15px 30px; /* Increased padding for a larger button */
+    border-radius: 30px; /* More rounded corners for the button */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Add a subtle shadow for depth */
+    text-transform: uppercase; /* Optional: Transform text to uppercase for stylistic choice */
+    font-size: 18px; /* Increase font size for better readability */
+    font-weight: bold; /* Make the text bold */
+    background-color: #ff758c; /* Pink color to match the gradient */
+    color: white;
+    border: none;
+    outline: none;
+}
+
+.btn-pill:hover {
+    background-color: #f06a8b; /* A slightly darker pink for hover effect */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3); /* Darker shadow for a "lifted" effect */
+}
+
+
+input[type=radio] {
+    margin-right: 5px;
+}
+
+input[type=radio]:focus + label {
+    color: #e2519a;
+}
+
+label {
+    cursor: pointer;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+        padding: 20px;
+        box-shadow: none;
+        border-radius: 0;
+    }
+}
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Apply the animation to the link */
+.text-center a {
+    animation: blink 2.5s infinite;
+    color: #da1276;
+}
+
+</style>
+</head>
+<body>
+  <div class="content">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 contents">
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              <div class="form-block">
+                <div class="mb-4" style="align-items: center;">
+                  <h1 style="text-align: center;">User Registration page</h1>
+                </div>
+                <form class="real-form" method="post">
+                  {% csrf_token %}
+                  <div class="form-group first">
+                    <label for="username">Username</label>
+                    {{ form.username }}
+                  </div>
+                  <div class="form-group first">
+                    <label for="email">Email</label>
+                    {{ form.email}}
+                  </div>
+                  <div class="form-group last mb-4">
+                    <label for="password">Password</label>
+                    {{ form.password1 }}
+                  </div>
+                  <div class="form-group last mb-4">
+                    <label for="password">Confirm Password</label>
+                    {{ form.password2 }}
+                  </div>
+
+                  <div class="d-flex mb-5 align-items-center">
+                    <input type="radio" name="role" value="projectmanager" />
+                    <label class="control control--radio mb-0"><span class="caption">Projectmanager</span>
+                      <div class="control__indicator"></div>
+                    </label>
+                  </div>
+                  <div class="d-flex mb-5 align-items-center">
+                    <input type="radio" name="role" value="client" />
+                    <label class="control control--radio mb-0"><span class="caption">Client</span>
+                      <div class="control__indicator"></div>
+                    </label>
+                  </div>
+                  <div class="d-flex mb-5 align-items-center">
+                    <input type="radio" name="role" value="employee" />
+                    <label class="control control--radio mb-0"><span the="caption">Employee</span>
+                      <div class="control__indicator"></div>
+                    </label>
+                  </div>
+                  <span class="text-error">{{ form.errors }}</span>
+                  <button type="submit" value="Register" class="btn btn-pill text-white btn-block btn-primary">Register</button>
+                </form>
+                <div class="text-center">Already have an account? <a href="{% url 'login' %}">Login
+                    here</a></div> 
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!-- employees_list.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e9ecef;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+    background: white;
+}
+
+th, td {
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+}
+
+.edit-btn, .delete-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn {
+    background-color: #ffc107; /* Yellow */
+}
+
+.delete-btn {
+    background-color: #dc3545; /* Red */
+}
+
+.edit-btn:hover {
+    background-color: #e0a800;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.back-btn {
+    display: block;
+    width: max-content;
+    padding: 8px 16px;
+    margin: 20px auto;
+    font-size: 18px;
+    color: #fff;
+    background-color: #17a2b8; /* Blue */
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #138496;
+}
+
+/* Optional: Add a hover effect for the whole row */
+tr:hover {
+    background-color: #f8f9fa;
+}
+/* Advanced styles for back link */
+
+.back-link-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.back-to-manager {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.6);
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.back-to-manager:hover, .back-to-manager:focus {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.9);
+}
+
+.back-to-manager:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 15px rgba(102, 126, 234, 0.6);
+}
+/* No Employee Message Style */
+#no-employee-msg {
+  display: none; /* Initially hide the message */
+  text-align: center; 
+  padding: 10px; 
+  background-color: #6C63FF; /* Table header color */
+  color: white; 
+  border-radius: 4px; 
+  font-family: 'Arial', sans-serif; 
+  font-size: 0.8em; 
+  width: 400px; /* Yeh example width hai, aapko isko apne button ke according adjust karna hoga */
+  margin: 0 auto;/* Smaller font size */
+}
+
+.no-employee-msg h2 {
+  color: white; /* White color for the text */
+  font-size: 16px; /* Reduced font size */
+  margin-bottom: 0.25em; /* Reduced space below the heading */
+}
+
+
+
+.no-employee-msg p {
+  color: #adb5bd; /* Light grey color */
+  font-size: 1em; 
+}
+
+
+</style>
+<h2>Employees List</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Employee Name</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee.user.username }}</td>
+            <td>{{ employee.approval_status }}</td>
+            <td>
+                <a href="{% url 'edit_employee' pk=employee.pk %}" class="edit-btn">Edit</a>
+                <a href="{% url 'delete_employee' pk=employee.pk%}" class="delete-btn">Delete</a>
+            </td>
+            {% empty %}
+            <tr>
+                <td colspan="3" id="no-employee-msg">No Employee Found.</td>
+            </tr>
+            {% endfor %}
+    </tbody>
+</table>
+<!-- 
+<div class="no-employee-msg"> -->
+    <div id="data-container"></div>
+
+<!-- No Employee Found message -->
+<!-- <div id="no-employee-msg" style="display:none;">No Employee Found.</div> -->
+
+<div class="back-link-container">
+    <a href="{% url 'projectmanager' %}" class="back-to-manager">Back to ProjectManager</a>
+</div>
+
+{% endblock %}

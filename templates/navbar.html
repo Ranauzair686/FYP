@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+
+<style type="text/css">
+.navbar {
+  background: linear-gradient(to right, #6dd5ed, #2193b0); /* Beautiful blue gradient */
+  backdrop-filter: blur(10px);
+  border-bottom: none; /* Remove if you don't want a bottom border */
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Box Shadow for Navbar on Scroll */
+body {
+  padding-top: 56px; /* Adjust this value based on the height of your navbar */
+}
+
+
+
+/* Navbar Links - Underline Effect */
+.navbar-dark .navbar-nav .nav-link {
+  position: relative;
+  color: #fff; /* White color for better contrast on gradient bg */
+  transition: color 0.3s;
+}
+
+.navbar-dark .navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #fff; /* White color for underline to contrast with gradient */
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: visibility 0s linear 0.3s, transform 0.3s ease;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover::after {
+  visibility: visible;
+  transform: scaleX(1);
+  transition-delay: 0s;
+}
+
+/* Bounce In Animation for Brand Logo */
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.navbar-brand {
+  animation: bounceIn 0.5s ease;
+}
+
+
+</style>
+</head>
+<body>
+
+
+
+<div class="bs-example">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+        <a href="/" class="navbar-brand">ADS</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav">
+                
+
+            </div>
+
+            <div class="navbar-nav">
+                <a href="/" class="nav-item nav-link active">Home</a>
+                <a href="/register" class="nav-item nav-link">Projectmanager</a>
+                <a href="/register" class="nav-item nav-link">Employee</a>
+                <a href="/register" class="nav-item nav-link"> Client</a>
+                <a href="/register" class="nav-item nav-link"> Register/login</a>
+            </div>
+
+
+
+
+        </div>
+    </nav>
+</div>
+
+<script>
+window.onscroll = function() {
+  var navbar = document.querySelector('.navbar');
+  if (window.pageYOffset > 0) {
+    navbar.style.boxShadow = '0 2px 4px rgba(0,0,0,.1)';
+  } else {
+    navbar.style.boxShadow = 'none';
+  }
+};
+  </script>
+</body>
+</html>

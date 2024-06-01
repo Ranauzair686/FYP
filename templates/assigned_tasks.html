@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="/static/css/assign.css">
+<table class="task-table">
+    <thead>
+        <tr>
+            <th>Task</th>
+            <th>Assigned On</th>
+            <th>SRS Document</th>
+            <th>Project Description</th> <!-- New column for project description -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for assigned_task in assigned_tasks %}
+        <tr>
+            <td>{{ assigned_task.task.project_name }}</td>
+            <td>{{ assigned_task.assigned_at }}</td>
+            <td>
+                {% if assigned_task.srs_document %}
+                <a href="{{ assigned_task.srs_document.srs_document.url }}" download>Download</a>
+                {% else %}
+                No Document Available
+                {% endif %}
+            </td>
+            <!-- Include project description in a new column -->
+            <td>{{ assigned_task.task.project_description }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="link-container">
+    <a href="{% url 'employee' %}">Back to Employee</a>
+</div>
+

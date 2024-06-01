@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upload your SRS</title>
+<style>
+/* Base styles */
+
+body {
+  background-color: #f0f0f0;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Form styles */
+
+.upload-srs-form-wrapper {
+  text-align: center;
+}
+
+.srs-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.srs-form:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.srs-number {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.srs-text-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.srs-text-field:focus {
+  border-color: #007bff;
+}
+
+#add-form {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#add-form:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive design */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+}
+
+  </style><!-- Link to your static CSS file --> 
+</head>
+<body>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <!-- Form wrapper -->
+      <div class="upload-srs-form-wrapper">
+
+        <div class="srs-form-template" style="display: none;">
+    <div class="srs-number">SRS #{{ formset.empty_form.id }}</div>
+    {{ formset.empty_form.as_p }}
+  </div>
+
+        <h2 class="text-center mb-4">Upload your SRS</h2>
+        <form method="post">
+          {% csrf_token %}
+          {{ formset.management_form }} <!-- Include the management form -->
+
+          {% for form in formset %}
+            <div class="srs-form">
+              <div class="srs-number">SRS #{{ forloop.counter }}</div> <!-- Numbering for each SRS -->
+              {{ form.as_p }} <!-- Render each form -->
+            </div>
+          {% endfor %}
+
+          <!-- The "Add another SRS" button -->
+          <button id="add-form" class="btn btn-secondary" type="button">Add another SRS</button>
+
+          <!-- The "Submit SRS" button, now moved to the end after all forms -->
+          <input type="submit" value="Submit SRS" class="btn btn-primary"/>
+
+        </form>
+
+      </div> <!-- End of form wrapper -->
+
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const addButton = document.getElementById('add-form');
+  let formCount = document.querySelectorAll('.srs-form').length;
+
+  addButton.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    let totalForms = document.getElementById('id_form-TOTAL_FORMS');
+    let currentFormCount = parseInt(totalForms.value, 10);
+
+    // Clone the form template
+    let newForm = document.querySelector('.srs-form').cloneNode(true);
+
+    // Update the SRS number for the new form
+    let srsNumberDiv = newForm.querySelector('.srs-number');
+    srsNumberDiv.textContent = `SRS #${currentFormCount + 1}`;
+
+    // Update the name attribute of input fields
+    newForm.querySelectorAll('input[type="text"], textarea').forEach(function(input) {
+      let oldName = input.getAttribute('name');
+      let newName = oldName.replace('-0-', `-${currentFormCount}-`);
+      input.setAttribute('name', newName);
+    });
+
+    // Proceed to update other form fields as required...
+
+    // After updating fields, append the form
+    addButton.parentNode.insertBefore(newForm, addButton);
+
+    // Increment form count and update the TOTAL_FORMS
+    totalForms.value = currentFormCount + 1;
+  });
+});
+
+</script>
+</body>
+</html>

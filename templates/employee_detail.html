@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Employee Detail</h2>
+    <p><strong>Name:</strong> {{ employee.name }}</p>
+    <p><strong>Age:</strong> {{ employee.age }}</p>
+    <!-- Add other details here as per your Employee model fields -->
+    <a href="{% url 'employees_list' %}">Back to Employee List</a>
+{% endblock %}

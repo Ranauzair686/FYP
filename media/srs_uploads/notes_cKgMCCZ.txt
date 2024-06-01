@@ -1,0 +1,18 @@
+en
+config t
+hostname
+exit
+exit
+------------------
+en
+config t
+banner motd #
+mesg
+ exit 
+exit
+---------------------------------
+en 
+config t
+enable secret 
+write memroy
+

@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Ambiguity Detection</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+
+{% include 'navbar.html' %}
+<div class="jumbotron">
+  <h1 class="display-4">Ambiguity Detection</h1>
+  <p class="lead">A service dedicated to client, employee & project manager. We provide online resources, professional support
+    and guidance to all.</p>
+  <hr class="my-4">
+
+  <div class="row justify-content-center">
+    <div class="col-lg-4">
+      <img src="{% static "images/AdminIcon.png" %}" width="50%" alt=""><br><br>
+      <a class="btn btn-custom btn-lg" href="/login" role="button">Project Manager Panel</a>
+    </div>
+
+    <div class="col-lg-4">
+      <img src="{% static "images/student.png" %}" width="50%" alt=""><br><br>
+      <a class="btn btn-custom btn-lg" href="/login" role="button">Employee Panel</a>
+    </div>
+
+    <div class="col-lg-4">
+      <img src="{% static "images/student.png" %}" width="50%" alt=""><br><br>
+      <a class="btn btn-custom btn-lg" href="/login" role="button">Client Panel</a>
+    </div>
+  </div>
+</div>
+
+{% include 'footer.html' %}
+
+</body>
+</html>
