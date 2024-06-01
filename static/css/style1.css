@@ -1,0 +1,73 @@
+body {
+    background: url('/static/images/paper-airplanes-pencils.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.container {
+    /* background: rgba(134, 186, 221, 0.9);    */
+    background-color: #ff0000;
+    padding: 10px;
+    border-radius: 35px; /* Increased border-radius for a more pronounced curve */
+    box-shadow: 0 10px 20px rgba(235, 219, 219, 0.2); /* Increased box-shadow for a deeper effect */
+    max-width: 400px;
+    margin: 3% auto;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-block{
+    display: flex;
+    flex-direction: column;
+}
+
+.real-form, .form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 10px; /* Reduced bottom margin for the heading */
+    font-size: 24px; /* Reduced font size */
+    color: #f0ebeb;
+}
+
+.form-control {
+    border-radius: 10px;
+    margin-bottom: 5px; /* Reduced space between form fields */
+    height: 35px; /* Reduced field height */
+    font-size: 14px; /* Reduced font size */
+    color: #ff0000;
+}
+
+.btn-primary {
+    padding: 8px 15px; /* Reduced button padding */
+    border-radius: 10px;
+    display: block;
+    margin: 10px auto 0; /* Reduced margin above the button */
+    width: 100%;
+}
+
+/* Styles for radio buttons */
+.form-check {
+    margin-bottom: 5px; /* Reduced space between radio button options */
+}
+
+.form-check-input {
+    margin-top: 0;
+    margin-right: 0.5rem;
+}
+
+.form-check-label {
+    margin-left: 0.5rem;
+    font-size: 14px; /* Reduced font size */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+        margin-top: 10%;
+    }
+}

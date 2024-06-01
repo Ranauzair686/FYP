@@ -1,0 +1,54 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f7f7f7; /* Light grey background for subtle texture */
+  }
+  
+  .jumbotron {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.8), rgba(103, 58, 183, 0.8)), url('your-background-image-path.jpg');
+    background-size: cover;
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+  }
+  
+  /* Neumorphism effect for buttons */
+  .btn-custom {
+    background: #28a745;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 8px 8px 15px #c5c5c5, -8px -8px 15px #ffffff;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .btn-custom:hover {
+    background: #218838;
+    box-shadow: 2px 2px 5px #c5c5c5, -2px -2px 5px #ffffff;
+    transform: translateY(-2px);
+  }
+  
+  /* Dynamic shadow effect */
+  .col-lg-4 img {
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .col-lg-4:hover img {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Responsive font sizes */
+  h1.display-4 {
+    font-size: 4vw; /* Scale based on viewport width */
+  }
+  
+  @media (max-width: 768px) {
+    .col-lg-4 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    h1.display-4 {
+      font-size: 6vw; /* Larger font size on smaller screens */
+    }
+  }
